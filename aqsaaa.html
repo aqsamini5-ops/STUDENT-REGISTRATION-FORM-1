@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+</head>
+<body>
+
+<h2>Student Registration Form</h2>
+
+<form onsubmit="return validateForm()">
+
+    Name: <input type="text" id="name"><br><br>
+
+    Email: <input type="text" id="email"><br><br>
+
+    Password: <input type="password" id="password"><br><br>
+
+    City:
+    <select id="city">
+        <option value="">Select City</option>
+        <option>Rawalpindi</option>
+        <option>Islamabad</option>
+        <option>Lahore</option>
+    </select>
+    <br><br>
+
+    Gender:
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
+    <input type="radio" name="gender" value="Other"> Other
+    <br><br>
+
+    Hobbies:
+    <input type="checkbox" name="hobby"> Reading
+    <input type="checkbox" name="hobby"> Sports
+    <input type="checkbox" name="hobby"> Music
+    <br><br>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+<script>
+function validateForm() {
+
+    // Name
+    let name = document.getElementById("name").value;
+    if (name === "") {
+        alert("Name is required");
+        return false;
+    }
+
+    // Email
+    let email = document.getElementById("email").value;
+    if (email === "" || !email.includes("@")) {
+        alert("Enter valid email");
+        return false;
+    }
+
+    // Password
+    let password = document.getElementById("password").value;
+    if (password === "" || password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return false;
+    }
+
+    // City
+    let city = document.getElementById("city").value;
+    if (city === "") {
+        alert("Please select a city");
+        return false;
+    }
+
+    // Gender
+    let gender = document.getElementsByName("gender");
+    let selectedGender = false;
+    for (let i = 0; i < gender.length; i++) {
+        if (gender[i].checked) {
+            selectedGender = true;
+        }
+    }
+    if (!selectedGender) {
+        alert("Select gender");
+        return false;
+    }
+
+    // Hobbies
+    let hobbies = document.getElementsByName("hobby");
+    let selectedHobby = false;
+    for (let i = 0; i < hobbies.length; i++) {
+        if (hobbies[i].checked) {
+            selectedHobby = true;
+        }
+    }
+    if (!selectedHobby) {
+        alert("Select at least one hobby");
+        return false;
+    }
+
+    alert("Form submitted successfully!");
+    return true;
+}
+</script>
+
+</body>
+</html>
